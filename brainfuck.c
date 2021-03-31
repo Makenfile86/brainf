@@ -2,25 +2,47 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-int move_ptr_start(int byte, char *input, int i)
+int move_ptr(char *input, int i)
 {
  //printf("testi2");
- if (byte == 0)
+ int count;
+ int direction;
+
+ direction = 0;
+ count = 0;
+ if (input[i] == '[')
+ direction = 1;
+ if (input[i] == ']')
+ direction = -1;
+
+ while (input[i] != '\0')
  {
- while (input[i] != ']' && input[i] != '\0')
- i++;
+ if (input[i] == '[')
+ count += 1;
+ else if (input[i] == ']')
+ count -= 1;
+ if ((input[i] == '[' || input[i] == ']') && count == 0)
+return (i);
+ i += direction;
  }
- return (i);
+ 
+ return (0);
+ 
 }
 
 int move_ptr_end(int byte, char *input, int i)
 {
  if (byte != 0)
  {
- while (input[i] != '[' && i != 0)
+ while (i != 0)
+ {
+if (input[i] == '[')
+ return (i);
  i--;
  }
+ }
  return (i);
+ 
 }
 
 void brainfuck(char *input)
@@ -52,10 +74,10 @@ while (input[i] != '\0')
         //printf("testerr");
         printf("%c", bytes[i_ptr]);
     }
-    else if (input[i] == '[')
-    i = move_ptr_start(bytes[i_ptr], input, i);
-    else if (input[i] == ']')
-    i = move_ptr_end(bytes[i_ptr], input, i);
+    else if (input[i] == '[' && bytes[i_ptr] == 0)
+    i = move_ptr(input, i);
+    else if (input[i] == ']' && bytes[i_ptr] != 0)
+    i = move_ptr(input, i);
     i++;
 }
 
