@@ -4,7 +4,7 @@
 
 int move_ptr(char *input, int i)
 {
- //printf("testi2");
+
  int count;
  int direction;
 
@@ -30,24 +30,9 @@ return (i);
  
 }
 
-int move_ptr_end(int byte, char *input, int i)
-{
- if (byte != 0)
- {
- while (i != 0)
- {
-if (input[i] == '[')
- return (i);
- i--;
- }
- }
- return (i);
- 
-}
 
 void brainfuck(char *input)
 {
-//printf("input: %s\n", input);
 char *bytes;
 int i;
 int i_ptr;
@@ -59,8 +44,6 @@ printf("malloc failed");
 
 while (input[i] != '\0')
 {
-    //printf("%c", input[i]);
-    //printf("testi");
     if (input[i] == '>')
     i_ptr += 1;
     else if (input[i] == '<')
@@ -70,10 +53,7 @@ while (input[i] != '\0')
     else if (input[i] == '-')
     bytes[i_ptr] -= 1;
     else if (input[i] == '.')
-    {
-        //printf("testerr");
-        printf("%c", bytes[i_ptr]);
-    }
+   printf("%c", bytes[i_ptr]);
     else if (input[i] == '[' && bytes[i_ptr] == 0)
     i = move_ptr(input, i);
     else if (input[i] == ']' && bytes[i_ptr] != 0)
@@ -85,7 +65,7 @@ while (input[i] != '\0')
 
 int main(int argc, char **argv)
 {
-//printf("%d", argc);
+
  if (argc != 2)
  printf("vaara argc nbr");
  else
