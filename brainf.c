@@ -31,7 +31,7 @@ return (i);
 }
 
 
-void brainfuck(char *input)
+void brainf(char *input)
 {
 char *bytes;
 int i;
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
  if (argc != 2)
  printf("vaara argc nbr");
  else
- brainfuck(argv[1]);
+ brainf(argv[1]);
  
  return (0);
 }
